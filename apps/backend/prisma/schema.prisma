@@ -1,0 +1,66 @@
+datasource db {
+  provider = "postgresql" // or "mysql" or any other supported provider
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id          Int       @id @default(autoincrement())
+  username    String    @unique
+  email       String    @unique
+  password    String
+  fullName   String
+  address     String
+  phoneNumber String
+  role        String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  orders      Order[]
+
+  @@map("Table_User") // Map to the specific table name if necessary
+}
+
+model Breakfast {
+  id          Int       @id @default(autoincrement())
+  description String
+  price       Decimal
+  category    String
+  imageUrl    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  status      String
+  orderDetails Order_Detail[]
+
+  @@map("Table_Breakfast")
+}
+
+model Order {
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  total       Decimal
+  status      String
+  orderTime   DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  user        User  @relation(fields: [userId], references: [id])
+  orderDetails Order_Detail[]
+
+  @@map("Table_Order")
+}
+
+model Order_Detail {
+  id          Int       @id @default(autoincrement())
+  orderId     Int
+  productId   Int
+  quantity    Int
+  amount      Decimal
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  order       Order  @relation(fields: [orderId], references: [id])
+  breakfast   Breakfast @relation(fields: [productId], references: [id])
+
+  @@map("Table_Order_Detail")
+}
