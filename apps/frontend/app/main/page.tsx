@@ -92,17 +92,13 @@ export default function Page() {
           </Flex>
         </Section>
         <Section>
-          <Grid columns="3" gap="3" rows="repeat(2, 64px)" width="auto">
+          <Flex justify={'between'} align={'center'}>
             <Product />
             <Product />
-            <Flex
-              align={'center'}
-              justify={'center'}
-              className='w-full h-full' 
-            >
+            <Product />
               <Button variant="classic">Browse More</Button>
-            </Flex>
-          </Grid>
+              
+          </Flex>
         </Section>
       </Section>
       <Section
@@ -280,52 +276,17 @@ export default function Page() {
           </Grid>
         </Section>
       </Section>
-      <Section id="menu" px={'6rem'}>
-        <Grid columns="3" gapX="3" rows="repeat(2, 64px)" width="auto">
+      <Section px={'6rem'}>
+        <Flex justify="between" >
           <Product />
           <Product />
           <Product />
-        </Grid>
+          <Product />
+
+
+        </Flex>
       </Section>
-      <Section p={'6rem'} py={'4rem'}>
-        <Grid columns={'3'}>
-          <Box className="text-sm text-gray-600"> 2023 Your Company</Box>
-          <Box>
-            <h6 className="text-sm text-gray-600">Follow Us</h6>
-            <ul className="flex flex-col list-none mb-0">
-              <li className=" inline-block mr-4">
-                <Link href="https://twitter.com/yourcompany">Twitter</Link>
-              </li>
-              <li className="inline-block mr-4">
-                <Link href="https://facebook.com/yourcompany">Facebook</Link>
-              </li>
-              <li className="inline-block mr-4">
-                <Link href="https://instagram.com/yourcompany">Instagram</Link>
-              </li>
-              <li className="inline-block mr-4">
-                <Link href="https://linkedin.com/yourcompany">LinkedIn</Link>
-              </li>
-            </ul>
-          </Box>
-          <Box>
-            <h6 className="text-sm text-gray-600">Quick Links</h6>
-            <ul className="flex flex-col list-none mb-0">
-              <li className="inline-block mr-4">
-                <Link href="/about">About Us</Link>
-              </li>
-              <li className="inline-block mr-4">
-                <Link href="/contact">Contact Us</Link>
-              </li>
-              <li className="inline-block mr-4">
-                <Link href="/faqs">FAQs</Link>
-              </li>
-              <li className="inline-block mr-4">
-                <Link href="/terms">Terms & Conditions</Link>
-              </li>
-            </ul>
-          </Box>
-        </Grid>
-      </Section>
+     
     </main>
   );
 }
